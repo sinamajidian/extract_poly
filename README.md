@@ -2,7 +2,7 @@ Extracting haplotype information from BAM and VCF file for 10x data
 ======
 
 ## About:
-This is an edited version of (extracthairs)[https://github.com/vibansal/HapCUT2]   in which polyploids are also allowed.
+This is an edited version of [extracthairs](https://github.com/vibansal/HapCUT2)   in which polyploids are also allowed.
 
 
 
@@ -11,6 +11,9 @@ This is an edited version of (extracthairs)[https://github.com/vibansal/HapCUT2]
 ## To build:
 
 ```
+
+git clone https://github.com/smajidian/extract_poly_10x
+cd extract_poly_10x
 make 
 ```
 
@@ -35,7 +38,6 @@ Assembling haplotypes requires two steps:
 
 ```
 ./build/extractHAIRS --10X 1 --bam reads.sorted.bam --VCF variants.VCF --out unlinked_fragment_file
-
 ```
 
 (2) use LinkFragments to link fragments into barcoded molecules:
@@ -57,7 +59,7 @@ NOTE: It is required that the BAM reads have the BX (corrected barcode) tag.
 
 [Edge, P., Bafna, V. & Bansal, V. HapCUT2: robust and accurate haplotype assembly for diverse sequencing technologies. Genome Res. gr.213462.116 (2016).](http://genome.cshlp.org/content/early/2016/12/09/gr.213462.116.abstract)
 
-(Extracthairs)[https://github.com/vibansal/HapCUT2]
+[Extracthairs](https://github.com/vibansal/HapCUT2)
 
 Hap10  
 
