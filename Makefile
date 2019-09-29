@@ -1,5 +1,5 @@
 
-# HAPCUT2 MAKEFILE
+# part of HAPCUT2 MAKEFILE
 default: all
 
 CC=gcc -g -O3 -Wall -D_GNU_SOURCE
