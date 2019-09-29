@@ -9,8 +9,8 @@ CFLAGS=-c -Wall
 B=build
 H=hairs-src
 X=hapcut2-src
-HTSLIB=submodules/htslib
-SAMTOOLS=submodules/samtools
+HTSLIB=sub/htslib
+SAMTOOLS=sub/samtools
 T=test
 # below is the path to CUnit directory, change if need be
 CUNIT=/usr/include/CUnit

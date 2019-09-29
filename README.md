@@ -40,7 +40,7 @@ Assembling haplotypes requires two steps:
 ./build/extractHAIRS --10X 1 --bam reads.sorted.bam --VCF variants.VCF --out unlinked_fragment_file
 ```
 
-(2) use LinkFragments to link fragments into barcoded molecules:
+(2) Link fragments into barcode-specific fragment:
 ```
 python3 utilities/LinkFragments_brcd_based.py  unlinked_fragment_file linked_fragment_file
 ```
