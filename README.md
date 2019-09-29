@@ -1,22 +1,21 @@
-Extracting haplotype information from BAM and VCF file (part of Hapcut2 package)
+Extracting haplotype information from BAM and VCF file for 10x data
 ======
 
 ## About:
-This is an edited version of extracthairs
-
-## Citation:
-
-[Edge, P., Bafna, V. & Bansal, V. HapCUT2: robust and accurate haplotype assembly for diverse sequencing technologies. Genome Res. gr.213462.116 (2016).](http://genome.cshlp.org/content/early/2016/12/09/gr.213462.116.abstract)
+This is an edited version of (extracthairs)[https://github.com/vibansal/HapCUT2]   in which polyploids are also allowed.
 
 
 
 
 
-## to build:
+## To build:
 
- ```make ```
+```
+make 
+```
 
 The makefile will attempt to build samtools 1.2 and htslib 1.2.1 as git submodules.
+
 
 
 
@@ -24,6 +23,7 @@ The makefile will attempt to build samtools 1.2 and htslib 1.2.1 as git submodul
 It requires the following input:
 - BAM file for an individual containing reads aligned to a reference genome
 - VCF file containing only heterzygous SNVs . Complex SNVs and indels should be handled beforehand. 
+
 
 
 
@@ -45,8 +45,21 @@ python3 utilities/LinkFragments_brcd_based.py  unlinked_fragment_file linked_fra
 
 
 
+
 NOTE: It is required that the BAM reads have the BX (corrected barcode) tag.
 
+
+
+
+
+
+## Citation:
+
+[Edge, P., Bafna, V. & Bansal, V. HapCUT2: robust and accurate haplotype assembly for diverse sequencing technologies. Genome Res. gr.213462.116 (2016).](http://genome.cshlp.org/content/early/2016/12/09/gr.213462.116.abstract)
+
+(Extracthairs)[https://github.com/vibansal/HapCUT2]
+
+Hap10  
 
 
 
