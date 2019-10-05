@@ -13,7 +13,7 @@ This is an edited version of [extracthairs](https://github.com/vibansal/HapCUT2)
 ```
 
 git clone https://github.com/smajidian/extract_poly
-cd extract_poly_10x
+cd extract_poly
 make 
 ```
 
