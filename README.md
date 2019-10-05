@@ -13,7 +13,8 @@ cd extract_poly
 make 
 ```
 
-The makefile will attempt to build samtools 1.2 and htslib 1.2.1 as git submodules.
+The makefile will attempt to build samtools and htslib as git submodules. The output of this step is a binary file `extractHAIRS` in folder `build`.
+
 
 
 
