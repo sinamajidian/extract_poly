@@ -1,8 +1,8 @@
-Extracting haplotype information from BAM and VCF file for 10x data
+Extracting haplotype information from BAM and VCF file
 ======
 
 ## About:
-This is an edited version of [extracthairs](https://github.com/vibansal/HapCUT2)   in which polyploids are also allowed.
+This is an edited version of [extracthairs](https://github.com/vibansal/HapCUT2) in which polyploids are also allowed.
 
 
 
@@ -12,7 +12,7 @@ This is an edited version of [extracthairs](https://github.com/vibansal/HapCUT2)
 
 ```
 
-git clone https://github.com/smajidian/extract_poly_10x
+git clone https://github.com/smajidian/extract_poly
 cd extract_poly_10x
 make 
 ```
@@ -30,17 +30,42 @@ It requires the following input:
 
 
 
-## To Run:
+## Run for Illumina dataset:
 
-Assembling haplotypes requires two steps:
 
-(1) use extractHAIRS to convert BAM file to the compact fragment file format containing only haplotype-relevant information. 
+(1) Filtering VCF file (removing homozygous and non-SNP variants)
+
+
 
 ```
-./build/extractHAIRS --10X 1 --bam reads.sorted.bam --VCF variants.VCF --out unlinked_fragment_file
+cat variants.vcf | grep -v "0/0" | grep -v "1/1" | grep -v "0/0" | grep -v "mnp" > variants_filtered.vcf
+
 ```
 
-(2) Link fragments into barcode-specific fragment:
+
+
+(2) Using extractHAIRS to convert BAM file to the compact fragment file format containing only haplotype-relevant information. 
+
+```
+./build/extractHAIRS  --bam reads.sorted.bam --VCF variants_filtered.vcf --out fragment_file
+```
+
+
+
+
+
+## Run for 10x dataset:
+
+(1) Filtering VCF file
+
+
+(2) use extractHAIRS to convert BAM file to the compact fragment file format containing only haplotype-relevant information. 
+
+```
+./build/extractHAIRS --10X 1 --bam reads.sorted.bam --VCF variants_filtered.vcf --out unlinked_fragment_file
+```
+
+(3) Link fragments into barcode-specific fragment:
 ```
 python3 utilities/LinkFragments_brcd_based.py  unlinked_fragment_file linked_fragment_file
 ```
