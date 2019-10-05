@@ -2,7 +2,7 @@ Extracting haplotype information from BAM and VCF file for polyploids
 ======
 
 ## About:
-This is an edited version of [extracthairs](https://github.com/vibansal/HapCUT2) in which polyploids are also allowed. The goal of this code is to generate fragment file needed for haplotyping algorithm like [hapcut](https://github.com/vibansal/hapcut2), [sdhap](https://sourceforge.net/projects/sdhap/), [althap](https://github.com/realabolfazl/AltHap), [Haptree v0.1](http://cb.csail.mit.edu/cb/haptree/), [HapMc](https://github.com/smajidian/HapMC), and [ H-popG](https://github.com/MinzhuXie/H-PoPG).
+This is an edited version (under test) of [extracthairs](https://github.com/vibansal/HapCUT2) in which polyploid genomes are also allowed. The goal of this code is to generate fragment file needed for haplotyping algorithm like [hapcut](https://github.com/vibansal/hapcut2), [sdhap](https://sourceforge.net/projects/sdhap/), [althap](https://github.com/realabolfazl/AltHap), [Haptree v0.1](http://cb.csail.mit.edu/cb/haptree/), [HapMc](https://github.com/smajidian/HapMC), and [ H-popG](https://github.com/MinzhuXie/H-PoPG).
 
 
 
@@ -32,13 +32,12 @@ It requires the following input:
 ## Run for Illumina dataset:
 
 
-(1) Filtering VCF file (removing homozygous and non-SNP variants) for triploid
-
-
+(1) Filtering VCF file (removing homozygous and non-SNP variants) for tetraploid
 
 ```
-cat variants.vcf | grep -v "0/0" | grep -v "1/1/1" | grep -v "0/0/0" | grep -v "mnp" > variants_filtered.vcf
+cd test_data
 
+cat vars.vcf | grep -v "1/1/1/1" | grep -v "0/0/0/0" | grep -v "mnp" > vars_filtered.vcf
 ```
 
 
@@ -46,20 +45,20 @@ cat variants.vcf | grep -v "0/0" | grep -v "1/1/1" | grep -v "0/0/0" | grep -v "
 (2) Using extractHAIRS to convert BAM file to the compact fragment file format containing only haplotype-relevant information. 
 
 ```
-./build/extractHAIRS  --bam reads_sorted.bam --VCF variants_filtered.vcf --out fragment_file
+../build/extractHAIRS  --bam reads_sorted.bam --VCF vars_filtered.vcf --out fragment_file
 ```
 
 
 (3) If you need to use the fragment file for sdhap and althap, use
 
 ```
-python2 FragmentPoly.py -f fragment_file  -o fragment_file_sdhap -x SDhaP 
+python2 ../FragmentPoly.py -f fragment_file  -o fragment_file_sdhap -x SDhaP 
 ```
 
 
 or for Haptree v0.1. Note that haptree v1 is only for diploid.
 ```
-python2 FragmentPoly.py -f fragment_file  -o fragment_file_haptree -x HapTree 
+python2 ../FragmentPoly.py -f fragment_file  -o fragment_file_haptree -x HapTree 
 ```
 
 
@@ -68,6 +67,10 @@ python2 FragmentPoly.py -f fragment_file  -o fragment_file_haptree -x HapTree
 ## Run for 10x dataset:
 
 (1) Filtering VCF file
+
+```
+cat variants.vcf | grep -v "0/0/0" | grep -v "1/1/1/1" | grep -v "0/0/0/0" | grep -v "mnp" > variants_filtered.vcf
+```
 
 
 (2) use extractHAIRS to convert BAM file to the compact fragment file format containing only haplotype-relevant information. 
