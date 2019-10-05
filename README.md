@@ -1,12 +1,8 @@
-Extracting haplotype information from BAM and VCF file
+Extracting haplotype information from BAM and VCF file for polyploids
 ======
 
 ## About:
-This is an edited version of [extracthairs](https://github.com/vibansal/HapCUT2) in which polyploids are also allowed.
-
-
-
-
+This is an edited version of [extracthairs](https://github.com/vibansal/HapCUT2) in which polyploids are also allowed. The goal of this code is to generate fragment file needed for haplotyping algorithm like sdhap, althap, hapcut, HapMC, Hap10, Haptree and H-popG. 
 
 ## To build:
 
@@ -51,6 +47,20 @@ cat variants.vcf | grep -v "0/0" | grep -v "1/1" | grep -v "0/0" | grep -v "mnp"
 ```
 
 
+(3) If you need to use the fragment file for sdhap and althap, use
+
+```
+python2 $fragpoly -f fragment_file  -o fragment_file_sdhap -x SDhaP 
+```
+
+
+or for haptree
+```
+python2 $fragpoly -f fragment_file  -o fragment_file_haptree -x HapTree 
+```
+
+
+
 
 
 
@@ -69,6 +79,20 @@ cat variants.vcf | grep -v "0/0" | grep -v "1/1" | grep -v "0/0" | grep -v "mnp"
 ```
 python3 utilities/LinkFragments_brcd_based.py  unlinked_fragment_file linked_fragment_file
 ```
+
+
+(4) If you need to use the fragment file for sdhap and althap, use
+
+```
+python2 $fragpoly -f fragment_file  -o fragment_file_sdhap -x SDhaP 
+```
+
+
+or for haptree
+```
+python2 $fragpoly -f fragment_file  -o fragment_file_haptree -x HapTree 
+```
+
 
 
 
