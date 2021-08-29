@@ -66,6 +66,9 @@ python2 ../FragmentPoly.py -f fragment_file  -o fragment_file_haptree -x HapTree
 
 ## Run for 10x dataset:
 
+*important* Please run the pipeline for each chromosome separately.
+
+
 (1) Filtering VCF file
 
 ```
