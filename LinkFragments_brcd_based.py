@@ -130,6 +130,8 @@ def link_fragments(flist):
 
     # start is 0-indexed start point and stop is 1 past the last residue, 0-indexed
     #for chrom,start,stop,barcode in get_molecules(bam_file, curr_chrom, dist=dist):
+    num_bad_snps = 0
+    num_overlapped_match_snps = 0
     for barcode,barcode_flist in barcode_to_flist.items():
 
         seen_snps = defaultdict(int)
@@ -157,9 +159,10 @@ def link_fragments(flist):
                     for i in range(len(new_fseq)):
                         if new_fseq[i][0] == snp_ix:
 
-                            if new_fseq[i][2] == allele_call:
+                            if new_fseq[i][1] == allele_call:
+                                num_overlapped_match_snps += 1
                                 q1 = ord(qual) - 33
-                                q2 = ord(new_fseq[i][3]) - 33
+                                q2 = ord(new_fseq[i][2]) - 33
 
                                 Q = q1 + q2 # combined quality score
                                 if Q > 93:
@@ -167,11 +170,11 @@ def link_fragments(flist):
 
                                 Q_char = chr(33 + Q)
 
-                                new_fseq[i] = (new_fseq[i][0], new_fseq[i][1], new_fseq[i][2], Q_char)
+                                new_fseq[i] = (new_fseq[i][0], new_fseq[i][1], Q_char) 
                                 #print(new_fseq)
 
                             else:
-
+                                num_bad_snps += 1
                                 del new_fseq[i]
                                 bad_snps.add(snp_ix)
 
@@ -235,7 +238,8 @@ def link_fragments(flist):
     print("  {} fragments linked to larger molecules".format(linked_count))
     print("  {} unlinked fragments with barcodes".format(unlinked_count))
     print("  {} unlinked fragments without barcodes".format(null_count))
-    print("  {} duplicate snp-cover".format(dup_snp_cover))
+    print("  {} duplicate snp-cover. {} bad and {} matched-allele snps ".format(dup_snp_cover,num_bad_snps,num_overlapped_match_snps))
+
 
     del flist
 
